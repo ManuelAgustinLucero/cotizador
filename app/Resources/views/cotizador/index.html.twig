@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Cotizador</h4>
+
+                            <br>
+                            {#<p class="category">Here is a subtitle for this table</p>#}
+                        </div>
+                        <div class="content table-responsive table-full-width">
+                            <table id="cliente" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Marca</th>
+                                    {#<th>Vehiculo</th>#}
+                                    <th>Modelo</th>
+                                    <th>Categoria</th>
+                                    <th>Producto</th>
+                                    <th>Precio</th>
+                                    <th>Alta</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for cotizador in cotizadors %}
+                                    <tr>
+                                        <td><a href="{{ path('admin_cotizador_show', { 'id': cotizador.id }) }}">{{ cotizador.id }}</a></td>
+                                        <td>{{ cotizador.marca }}</td>
+                                        {#<td>{{ cotizador.vehiculo }}</td>#}
+                                        <td>{{ cotizador.modelo }}</td>
+                                        <td>{{ cotizador.categoria }}</td>
+                                        <td>{{ cotizador.producto }}</td>
+                                        <td>{{ cotizador.precio }}</td>
+                                        <td>{% if cotizador.createdAt %}{{ cotizador.createdAt|date('Y-m-d') }}{% endif %}</td>
+                                        <td>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{ path('admin_cotizador_show', { 'id': cotizador.id }) }}">Detalle</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('admin_cotizador_edit', { 'id': cotizador.id }) }}">Editar</a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-5">
+                                    <a class="btn btn-info btn-fill btn-wd" href="{{ path('admin_cotizador_new') }}">Agregar</a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

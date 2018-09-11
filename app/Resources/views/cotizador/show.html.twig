@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-lg-offset-2">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title ">Detalle</h4>
+                            <hr>
+                        </div>
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-2">
+                                    <div class="form-group">
+                                        <label>Marca:</label>
+                                        {{ cotizador.marca }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4 ">
+                                    <div class="form-group">
+                                        <label>Fecha registro::</label>
+                                        <td>{% if cotizador.createdAt %}{{ cotizador.createdAt|date('Y-m-d ') }}{% endif %}</td>
+
+                                    </div>
+                                </div>
+                                {#<div class="col-md-6">#}
+                                    {#<div class="form-group">#}
+                                        {#<label>Vehiculo:</label>#}
+                                        {#{{ cotizador.vehiculo }}#}
+                                    {#</div>#}
+                                {#</div>#}
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-2">
+                                    <div class="form-group">
+                                        <label>Modelo:</label>
+                                        {{ cotizador.modelo }}
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <label >Categoria:</label>
+                                        {{ cotizador.categoria }}
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-2">
+                                    <div class="form-group">
+                                        <label>Producto:</label>
+                                        {{ cotizador.producto }}
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <label >Precio:</label>
+                                        {{ cotizador.precio }}
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+
+                            </div>
+                            <hr>
+                            <div class="text-center">
+                                {{ form_start(delete_form) }}
+                                <input   class=" btn btn-danger btn-fill btn-wd" type="submit" value="Eliminar">
+                                {{ form_end(delete_form) }}
+                                <br>
+                                {#<a  class=" btn btn-info btn-fill btn-wd"  href="{{ path('admin_pedido_edit', { 'id': pedido.id }) }}">Editar</a>#}
+
+                                <a  class=" btn btn-info btn-fill btn-wd" href="{{ path('admin_cotizador_index') }}">Volver al menu</a>
+                                <a class=" btn btn-success btn-fill btn-wd" href="{{ path('admin_cotizador_edit', { 'id': cotizador.id }) }}">Edit</a>
+                            </div>
+                            <div class="clearfix"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

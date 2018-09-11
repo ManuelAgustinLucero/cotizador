@@ -1,0 +1,112 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Producto
+ *
+ * @ORM\Table(name="producto")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductoRepository")
+ */
+class Producto
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="producto", type="string", length=255)
+     */
+    private $producto;
+    /**
+     * @ORM\OneToMany(targetEntity="Cotizador", mappedBy="producto")
+     */
+    private $cotizador;
+
+
+    public function __construct()
+    {
+        $this->cotizador = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set producto
+     *
+     * @param string $producto
+     *
+     * @return Producto
+     */
+    public function setProducto($producto)
+    {
+        $this->producto = $producto;
+
+        return $this;
+    }
+
+    /**
+     * Get producto
+     *
+     * @return string
+     */
+    public function getProducto()
+    {
+        return $this->producto;
+    }
+
+    /**
+     * Add cotizador
+     *
+     * @param \AppBundle\Entity\Cotizador $cotizador
+     *
+     * @return Producto
+     */
+    public function addCotizador(\AppBundle\Entity\Cotizador $cotizador)
+    {
+        $this->cotizador[] = $cotizador;
+
+        return $this;
+    }
+
+    /**
+     * Remove cotizador
+     *
+     * @param \AppBundle\Entity\Cotizador $cotizador
+     */
+    public function removeCotizador(\AppBundle\Entity\Cotizador $cotizador)
+    {
+        $this->cotizador->removeElement($cotizador);
+    }
+
+    /**
+     * Get cotizador
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCotizador()
+    {
+        return $this->cotizador;
+    }
+    public function __toString(){
+        return (string) $this->producto;
+    }
+}
